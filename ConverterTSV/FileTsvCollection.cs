@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using System.Linq;
 
 namespace ConverterTSV
 {
@@ -6,12 +7,18 @@ namespace ConverterTSV
     {
         public double Average(string key)
         {
-            throw new System.NotImplementedException();
+            var result = (from item in Items
+                          where item.ContainsKey(key)
+                          select item[key]).Average();
+            return result;
         }
 
         public int Sum(string key)
         {
-            throw new System.NotImplementedException();
+            var result = (from item in Items
+                          where item.ContainsKey(key)
+                          select item[key]).Sum();
+            return result;
         }
     }
 }
