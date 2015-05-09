@@ -6,7 +6,7 @@ using NUnit.Framework;
 namespace ConverterTSV.Test
 {
     [TestFixture]
-    public class StatisticsFunctionalTest
+    public class StatisticsIntegrationTest
     {
 
         private Statistics _statistics;
