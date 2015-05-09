@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using System;
+using NUnit.Framework;
 
 namespace ConverterTSV.Test
 {
@@ -28,6 +29,15 @@ namespace ConverterTSV.Test
         }
 
         [Test]
+        public void Average_of_zero_values()
+        {
+            _collection.Clear();
+
+            Assert.Throws<InvalidOperationException>(
+                    delegate { _resultAverage = _collection.Average("latency_ms"); });
+        }
+
+        [Test]
         public void Sum_of_two_values()
         {
             _collection.Clear();
@@ -37,6 +47,15 @@ namespace ConverterTSV.Test
 
             Assert.That(_resultSum, Is.Positive);
             Assert.That(_resultSum, Is.EqualTo(3));
+        }
+
+        [Test]
+        public void Sum_of_zero_values()
+        {
+            _collection.Clear();
+            _resultSum = _collection.Sum("bandwidth");
+
+            Assert.That(_resultSum, Is.EqualTo(0));
         }
     }
 }
