@@ -1,12 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace ConverterTSV
 {
-    class TsvParser
+    public class TsvParser
     {
+        public List<string> ValuesToKeep { get; set; }
+
+        public FileTsv ParseTsvFile(string filePath)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

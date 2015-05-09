@@ -53,6 +53,12 @@
     <None Include="TestFolder\OnlyCorrectFiles\CorrectFile1.tsv" />
     <None Include="TestFolder\OnlyCorrectFiles\CorrectFile2.tsv" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ConverterTSV\ConverterTSV.csproj">
+      <Project>{bc53e145-62bf-4b71-a1ab-ae5465792045}</Project>
+      <Name>ConverterTSV</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
