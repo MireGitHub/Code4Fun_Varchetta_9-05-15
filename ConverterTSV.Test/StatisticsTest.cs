@@ -41,5 +41,45 @@ namespace ConverterTSV.Test
             Assert.That(_result["TotalBandwidth"], Is.EqualTo(3));
         }
 
+        [Test]
+        public void Average_of_zero_values()
+        {
+            _statistics.FileTsvCollection.Clear();
+            FileTsvCollection collection = new FileTsvCollection();
+            collection.Add(new FileTsv { { "bandwidth", 1 } });
+            collection.Add(new FileTsv { { "bandwidth", 2 } });
+            _statistics.FileTsvCollection = collection;
+
+            Assert.Throws<InvalidOperationException>(
+                    delegate { _result = _statistics.GetStatistics(); });
+
+            Assert.That(_result["TotalBandwidth"], Is.Positive);
+            Assert.That(_result["TotalBandwidth"], Is.EqualTo(3));
+        }
+
+        [Test]
+        public void Sum_of_zero_values()
+        {
+            _statistics.FileTsvCollection.Clear();
+            FileTsvCollection collection = new FileTsvCollection();
+            collection.Add(new FileTsv { { "latency_ms", 1 } });
+            collection.Add(new FileTsv { { "latency_ms", 2 } });
+            _statistics.FileTsvCollection = collection;
+
+            _result = _statistics.GetStatistics();
+
+            Assert.That(_result["AverageLatency"], Is.Positive);
+            Assert.That(_result["AverageLatency"], Is.EqualTo(1.5));
+
+            Assert.That(_result["TotalBandwidth"], Is.EqualTo(0));
+        }
+
+        [Test]
+        public void Statistics_with_no_values()
+        {
+            Assert.Throws<InvalidOperationException>(
+                    delegate { _result = _statistics.GetStatistics(); });
+        }
+
     }
 }
