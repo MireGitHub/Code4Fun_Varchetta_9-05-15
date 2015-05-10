@@ -28,7 +28,11 @@ namespace ConverterTSV
 
                     values = line.Split(Separator);
 
-                    if (ValuesToKeep.Contains(values[0]))
+                    if (ValuesToKeep == null)
+                    {
+                        file.Add(values[0], int.Parse(values[1]));
+                    }
+                    else if (ValuesToKeep.Contains(values[0]))
                     {
                         file.Add(values[0], int.Parse(values[1]));
                     }

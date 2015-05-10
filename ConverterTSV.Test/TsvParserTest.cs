@@ -15,17 +15,28 @@ namespace ConverterTSV.Test
         [SetUp]
         public void Setup()
         {
-            _parser = new TsvParser()
-            {
-                ValuesToKeep = new List<string> { "latency_ms", "bandwidth" }
-            };
-
+            _parser = new TsvParser();
             _folder = Path.GetFullPath(@"..\..\TestFolder\FilesForTest\");
         }
 
         [Test]
         public void File_exists_with_values_to_keep()
         {
+            _parser.ValuesToKeep = new List<string> { "latency_ms", "bandwidth" };
+            string fileToParse = _folder + "CorrectFile.tsv";
+            _result = _parser.ParseTsvFile(fileToParse);
+
+            Assert.That(_result["latency_ms"], Is.Not.Null);
+            Assert.That(_result["latency_ms"], Is.EqualTo(70));
+
+            Assert.That(_result["bandwidth"], Is.Not.Null);
+            Assert.That(_result["bandwidth"], Is.EqualTo(20));
+        }
+
+        [Test]
+        public void Take_values_without_values_to_keep()
+        {
+            _parser.ValuesToKeep = null;
             string fileToParse = _folder + "CorrectFile.tsv";
             _result = _parser.ParseTsvFile(fileToParse);
 
@@ -63,5 +74,7 @@ namespace ConverterTSV.Test
             Assert.Throws<FormatException>(
                     delegate { _result = _parser.ParseTsvFile(fileToParse); });
         }
+
+       
     }
 }
