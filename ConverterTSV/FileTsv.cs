@@ -3,7 +3,7 @@
 
 namespace ConverterTSV
 {
-    public class FileTsv : Dictionary<string, int>
+    public class FileTsv : Dictionary<string, string>
     {
 
     }

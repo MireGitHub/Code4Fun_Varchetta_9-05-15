@@ -12,7 +12,6 @@ namespace ConverterTSV
         public FileTsv ParseTsvFile(string filePath)
         {
             var file = new FileTsv();
-            string[] values = new string[] { };
 
             try
             {
@@ -26,30 +25,26 @@ namespace ConverterTSV
                         continue;
                     }
 
-                    values = line.Split(Separator);
+                    string[] values = line.Split(Separator);
 
                     if (values.Length < 2)
                     {
-                        continue;
+                        throw new FormatException(String.Format("The key '{0}' has no value.", values[0]));
                     }
 
                     if (ValuesToKeep == null)
                     {
-                        file.Add(values[0], int.Parse(values[1]));
+                        file.Add(values[0], values[1]);
                     }
                     else if (ValuesToKeep.Contains(values[0]))
                     {
-                        file.Add(values[0], int.Parse(values[1]));
+                        file.Add(values[0], values[1]);
                     }
                 }
             }
             catch (IOException e)
             {
                 throw new IOException(e.Message);
-            }
-            catch (FormatException e)
-            {
-                throw new FormatException(String.Format("Cannot parse value '{0}' for label '{1}'", values[1], values[0]));
             }
 
             return file;

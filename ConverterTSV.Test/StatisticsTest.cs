@@ -25,10 +25,10 @@ namespace ConverterTSV.Test
         {
             _statistics.FileTsvCollection.Clear();
             FileTsvCollection collection = new FileTsvCollection();
-            collection.Add(new FileTsv { { "latency_ms", 1 } });
-            collection.Add(new FileTsv { { "latency_ms", 2 } });
-            collection.Add(new FileTsv { { "bandwidth", 1 } });
-            collection.Add(new FileTsv { { "bandwidth", 2 } });
+            collection.Add(new FileTsv { { "latency_ms", "1" } });
+            collection.Add(new FileTsv { { "latency_ms", "2" } });
+            collection.Add(new FileTsv { { "bandwidth", "1" } });
+            collection.Add(new FileTsv { { "bandwidth", "2" } });
             _statistics.FileTsvCollection = collection;
 
             _result = _statistics.GetStatistics();
@@ -45,8 +45,8 @@ namespace ConverterTSV.Test
         {
             _statistics.FileTsvCollection.Clear();
             FileTsvCollection collection = new FileTsvCollection();
-            collection.Add(new FileTsv { { "bandwidth", 1 } });
-            collection.Add(new FileTsv { { "bandwidth", 2 } });
+            collection.Add(new FileTsv { { "bandwidth", "1" } });
+            collection.Add(new FileTsv { { "bandwidth", "2" } });
             _statistics.FileTsvCollection = collection;
 
             Assert.Throws<InvalidOperationException>(
@@ -61,8 +61,8 @@ namespace ConverterTSV.Test
         {
             _statistics.FileTsvCollection.Clear();
             FileTsvCollection collection = new FileTsvCollection();
-            collection.Add(new FileTsv { { "latency_ms", 1 } });
-            collection.Add(new FileTsv { { "latency_ms", 2 } });
+            collection.Add(new FileTsv { { "latency_ms", "1" } });
+            collection.Add(new FileTsv { { "latency_ms", "2" } });
             _statistics.FileTsvCollection = collection;
 
             _result = _statistics.GetStatistics();

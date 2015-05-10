@@ -27,10 +27,10 @@ namespace ConverterTSV.Test
             _result = _parser.ParseTsvFile(fileToParse);
 
             Assert.That(_result["latency_ms"], Is.Not.Null);
-            Assert.That(_result["latency_ms"], Is.EqualTo(70));
+            Assert.That(_result["latency_ms"], Is.EqualTo("70"));
 
             Assert.That(_result["bandwidth"], Is.Not.Null);
-            Assert.That(_result["bandwidth"], Is.EqualTo(20));
+            Assert.That(_result["bandwidth"], Is.EqualTo("20"));
         }
 
         [Test]
@@ -41,10 +41,10 @@ namespace ConverterTSV.Test
             _result = _parser.ParseTsvFile(fileToParse);
 
             Assert.That(_result["latency_ms"], Is.Not.Null);
-            Assert.That(_result["latency_ms"], Is.EqualTo(70));
+            Assert.That(_result["latency_ms"], Is.EqualTo("70"));
 
             Assert.That(_result["bandwidth"], Is.Not.Null);
-            Assert.That(_result["bandwidth"], Is.EqualTo(20));
+            Assert.That(_result["bandwidth"], Is.EqualTo("20"));
         }
 
         [Test]
@@ -66,26 +66,15 @@ namespace ConverterTSV.Test
             Assert.That(_result.ContainsKey("bandwidth"), Is.False);
         }
 
-        [Test]
-        public void File_with_value_not_parsable()
-        {
-            string fileToParse = _folder + "WrongValue.tsv";
-
-            Assert.Throws<FormatException>(
-                    delegate { _result = _parser.ParseTsvFile(fileToParse); });
-        }
 
         [Test]
         public void File_exists_without_values_to_keep()
         {
             _parser.ValuesToKeep = new List<string> { "latency_ms", "bandwidth" };
             string fileToParse = _folder + "EmptyValue.tsv";
-            _result = _parser.ParseTsvFile(fileToParse);
 
-            Assert.That(_result["latency_ms"], Is.Not.Null);
-            Assert.That(_result["latency_ms"], Is.EqualTo(70));
-
-            Assert.That(_result.ContainsKey("bandwidth"), Is.False);
+            Assert.Throws<FormatException>(
+                    delegate { _result = _parser.ParseTsvFile(fileToParse); });
         }
 
        
