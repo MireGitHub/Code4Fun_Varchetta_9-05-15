@@ -7,6 +7,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConverterTSV", "ConverterTS
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConverterTSV.Test", "ConverterTSV.Test\ConverterTSV.Test.csproj", "{5E40AB8A-FCBF-486D-9869-3F8E8187BCFA}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Doc", "Doc", "{5907874E-87A1-4B09-8CB6-688951924627}"
+	ProjectSection(SolutionItems) = preProject
+		problem.txt = problem.txt
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
