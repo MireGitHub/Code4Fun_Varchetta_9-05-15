@@ -51,6 +51,7 @@
   <ItemGroup>
     <None Include="packages.config" />
     <None Include="TestFolder\FilesForTest\CorrectFile.tsv" />
+    <None Include="TestFolder\FilesForTest\EmptyValue.tsv" />
     <None Include="TestFolder\FilesForTest\WrongLabel.tsv" />
     <None Include="TestFolder\FilesForTest\WrongValue.tsv" />
     <None Include="TestFolder\OnlyCorrectFiles\CorrectFile1.tsv" />
