@@ -16,7 +16,6 @@ namespace ConverterTSV.Test
         {
             _statistics = new Statistics
             {
-                SourceFolder = Path.GetFullPath(@"..\..\TestFolder"),
                 FileTsvCollection = new FileTsvCollection()
             };
         }

@@ -6,7 +6,20 @@ namespace ConverterTSV
     public class Statistics
     {
         public string SourceFolder { get; set; }
-        public FileTsvCollection FileTsvCollection { get; set; }
+
+        private FileTsvCollection _fileTsvCollection;
+        public FileTsvCollection FileTsvCollection
+        {
+            set { this._fileTsvCollection = value; }
+            get
+            {
+                if (_fileTsvCollection == null)
+                {
+                    this._fileTsvCollection = LoadTsvCollection();
+                }
+                return this._fileTsvCollection;
+            }
+        }
 
         public void BinToTSV(string filePath)
         {
@@ -15,7 +28,6 @@ namespace ConverterTSV
 
         public Dictionary<string, double> GetStatistics()
         {
-            LoadTsvCollection();
             var statistics = new Dictionary<string, double>();
             statistics.Add("AverageLatency", FileTsvCollection.Average("latency_ms"));
             statistics.Add("TotalBandwidth", FileTsvCollection.Sum("bandwidth"));
